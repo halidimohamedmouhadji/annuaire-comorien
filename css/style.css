@@ -1,0 +1,807 @@
+/* =====================================
+   ANNUAIRE COMORIEN - STYLE PRINCIPAL
+   ===================================== */
+
+:root {
+    --navy: #10243a;
+    --navy-light: #183751;
+    --petrol: #087e78;
+    --gold: #c6a66b;
+    --white: #ffffff;
+    --ivory: #faf9f6;
+    --light: #f1f4f6;
+    --text: #263746;
+    --muted: #718096;
+    --border: #e2e8ee;
+    --shadow: 0 12px 35px rgba(16, 36, 58, 0.08);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: var(--ivory);
+    color: var(--text);
+    line-height: 1.7;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+img {
+    max-width: 100%;
+    display: block;
+}
+
+.container {
+    width: 100%;
+    max-width: 1250px;
+    margin: 0 auto;
+}
+
+/* =====================================
+   EN-TÊTE
+   ===================================== */
+
+.site-header {
+    width: 100%;
+    background: var(--navy);
+    color: var(--white);
+    padding: 18px 6%;
+    position: relative;
+    z-index: 10;
+    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.12);
+}
+
+.header-content {
+    max-width: 1250px;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 25px;
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 13px;
+    color: var(--white);
+    flex-shrink: 0;
+}
+
+.brand-symbol {
+    width: 46px;
+    height: 46px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--gold);
+    color: var(--navy);
+    border-radius: 10px;
+    font-size: 17px;
+    font-weight: 900;
+    letter-spacing: 1px;
+}
+
+.brand-text {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.4;
+}
+
+.brand-text strong {
+    color: var(--white);
+    font-size: 15px;
+    letter-spacing: 1px;
+}
+
+.brand-text span {
+    color: #d3dce4;
+    font-size: 11px;
+}
+
+.brand-flags {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.brand-flags img {
+    width: 38px;
+    height: 25px;
+    object-fit: cover;
+    border-radius: 3px;
+}
+
+.brand h1 {
+    font-size: 19px;
+    letter-spacing: 1px;
+    line-height: 1.4;
+}
+
+.brand p {
+    color: #d3dce4;
+    font-size: 12px;
+}
+
+.flags {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-shrink: 0;
+}
+
+.country-flag {
+    width: 34px;
+    height: 23px;
+    object-fit: cover;
+    border-radius: 3px;
+    box-shadow: 0 2px 5px rgba(0,0,0,.2);
+}
+
+.main-nav {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 23px;
+}
+
+.main-nav a {
+    color: #e5ebf0;
+    font-size: 13px;
+    font-weight: 600;
+    transition: 0.3s;
+}
+
+.main-nav a:hover,
+.main-nav a.active {
+    color: var(--gold);
+}
+
+/* =====================================
+   BOUTONS
+   ===================================== */
+
+.btn-primary,
+.btn-secondary {
+    display: inline-block;
+    padding: 13px 23px;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: 700;
+    transition: 0.3s;
+    text-align: center;
+}
+
+.btn-primary {
+    background: var(--gold);
+    color: var(--navy);
+}
+
+.btn-primary:hover {
+    background: #d9bd88;
+    transform: translateY(-2px);
+}
+
+.btn-secondary {
+    border: 1px solid rgba(255,255,255,0.75);
+    color: var(--white);
+}
+
+.btn-secondary:hover {
+    background: var(--white);
+    color: var(--navy);
+}
+
+/* =====================================
+   ACCUEIL - HERO
+   ===================================== */
+
+.hero {
+    min-height: 490px;
+    padding: 90px 7%;
+    display: flex;
+    align-items: center;
+    background:
+        linear-gradient(110deg, rgba(16,36,58,0.97), rgba(8,126,120,0.84));
+    color: var(--white);
+}
+
+.hero-content {
+    max-width: 850px;
+    margin: auto;
+    width: 100%;
+}
+
+.hero-label,
+.section-label {
+    display: inline-block;
+    color: var(--gold);
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 2px;
+    margin-bottom: 15px;
+}
+
+.hero h2 {
+    max-width: 750px;
+    font-size: clamp(32px, 5vw, 52px);
+    line-height: 1.2;
+    margin-bottom: 22px;
+}
+
+.hero-content > p {
+    max-width: 650px;
+    color: #e1e9ed;
+    font-size: 15px;
+    margin-bottom: 30px;
+}
+
+.hero-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 13px;
+}
+
+/* =====================================
+   TITRES DE SECTIONS
+   ===================================== */
+
+.section-heading {
+    text-align: center;
+    max-width: 750px;
+    margin: 0 auto 38px;
+}
+
+.section-heading h2 {
+    color: var(--navy);
+    font-size: 29px;
+    line-height: 1.3;
+    margin-bottom: 10px;
+}
+
+.section-heading p {
+    color: var(--muted);
+    font-size: 14px;
+}
+
+/* =====================================
+   STATISTIQUES
+   ===================================== */
+
+.stats-section {
+    padding: 75px 6%;
+    background: var(--white);
+}
+
+.stats-grid {
+    max-width: 1100px;
+    margin: auto;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 22px;
+}
+
+.stat-card {
+    padding: 30px 20px;
+    text-align: center;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    background: var(--ivory);
+    box-shadow: var(--shadow);
+    transition: 0.3s;
+}
+
+.stat-card:hover,
+.island-card:hover,
+.feature-card:hover {
+    transform: translateY(-5px);
+}
+
+.stat-icon {
+    display: block;
+    font-size: 30px;
+    margin-bottom: 10px;
+}
+
+.stat-card h3 {
+    font-size: 38px;
+    color: var(--petrol);
+    line-height: 1.3;
+}
+
+.stat-card p {
+    color: var(--muted);
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.island-heading {
+    margin-top: 65px;
+}
+
+.island-stats-grid {
+    max-width: 1100px;
+    margin: auto;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 18px;
+}
+
+.island-card {
+    padding: 25px 15px;
+    text-align: center;
+    background: var(--navy);
+    color: var(--white);
+    border-radius: 10px;
+    transition: 0.3s;
+}
+
+.island-card h3 {
+    font-size: 16px;
+    margin-bottom: 10px;
+    color: #e9edf0;
+}
+
+.island-card strong {
+    display: block;
+    color: var(--gold);
+    font-size: 35px;
+}
+
+.island-card p {
+    font-size: 12px;
+    color: #cbd5dd;
+}
+
+.stats-message {
+    text-align: center;
+    color: #b45309;
+    font-size: 13px;
+    margin-top: 20px;
+}
+
+/* =====================================
+   PRÉSENTATION ET CARTES
+   ===================================== */
+
+.intro-section {
+    padding: 75px 6%;
+    background: var(--ivory);
+}
+
+.feature-grid {
+    max-width: 1100px;
+    margin: auto;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 22px;
+}
+
+.feature-card {
+    padding: 30px 25px;
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    box-shadow: var(--shadow);
+    transition: 0.3s;
+}
+
+.feature-icon {
+    display: block;
+    font-size: 31px;
+    margin-bottom: 15px;
+}
+
+.feature-card h3 {
+    color: var(--navy);
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.feature-card p {
+    color: var(--muted);
+    font-size: 13px;
+}
+
+/* =====================================
+   COMMUNAUTÉ
+   ===================================== */
+
+.community-section {
+    padding: 75px 7%;
+    background: var(--navy);
+    color: var(--white);
+}
+
+.community-content {
+    max-width: 850px;
+    margin: auto;
+    text-align: center;
+}
+
+.community-content h2 {
+    font-size: 30px;
+    line-height: 1.3;
+    margin-bottom: 20px;
+}
+
+.community-content p {
+    color: #d4dfe6;
+    font-size: 14px;
+}
+
+/* =====================================
+   INSCRIPTION
+   ===================================== */
+
+.join-section {
+    padding: 70px 6%;
+    background: #edf4f2;
+    text-align: center;
+}
+
+.join-section h2 {
+    color: var(--navy);
+    font-size: 28px;
+    margin-bottom: 12px;
+}
+
+.join-section p {
+    color: var(--muted);
+    margin-bottom: 25px;
+}
+
+/* =====================================
+   PIED DE PAGE
+   ===================================== */
+
+.site-footer {
+    background: var(--navy);
+    color: var(--white);
+    padding: 45px 6% 0;
+}
+
+.footer-main {
+    width: 100%;
+    max-width: 1150px;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    padding-bottom: 25px;
+    text-align: center;
+}
+
+.footer-brand {
+    text-align: center;
+}
+
+.footer-brand h2 {
+    font-size: 20px;
+    letter-spacing: 1px;
+    margin-bottom: 8px;
+}
+
+.footer-brand p {
+    font-size: 13px;
+    color: #cbd5dd;
+}
+
+.footer-flags {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin: 0 auto 8px;
+}
+
+.footer-flags img {
+    width: 38px;
+    height: 25px;
+    object-fit: cover;
+    border-radius: 3px;
+}
+
+.footer-title {
+    color: var(--white);
+    font-size: 17px;
+    line-height: 1.5;
+    letter-spacing: 1px;
+    text-align: center;
+}
+
+.footer-description {
+    color: #cbd5dd;
+    font-size: 13px;
+    text-align: center;
+}
+
+.footer-links {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+}
+
+.footer-links h3 {
+    color: var(--gold);
+    font-size: 15px;
+    margin-bottom: 5px;
+}
+
+.footer-links a {
+    font-size: 13px;
+    color: #d5dfe6;
+    transition: 0.3s;
+}
+
+.footer-links a:hover {
+    color: var(--gold);
+}
+
+/* =====================================
+   SIGNATURE DU CRÉATEUR
+   Toujours centrée en bas du pied de page
+   ===================================== */
+
+.creator-section {
+    width: 100%;
+    max-width: 1150px;
+    margin: 15px auto 0;
+    padding: 28px 15px;
+    border-top: 1px solid rgba(255,255,255,0.15);
+    text-align: center !important;
+}
+
+.creator-section p,
+.creator-section h3,
+.creator-section span {
+    text-align: center !important;
+}
+
+.creator-label,
+.created-label {
+    display: block;
+    color: var(--gold);
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 2px;
+    margin-bottom: 9px;
+}
+
+.creator-name {
+    display: block;
+    color: var(--white);
+    font-size: 19px;
+    letter-spacing: 1.5px;
+    margin-bottom: 7px;
+}
+
+.creator-section p {
+    color: #cbd5dd;
+    font-size: 12px;
+    margin: 3px 0;
+}
+
+.project-date {
+    color: var(--gold) !important;
+    font-size: 11px !important;
+    margin-top: 8px !important;
+}
+
+.footer-bottom {
+    width: 100%;
+    text-align: center !important;
+    border-top: 1px solid rgba(255,255,255,0.12);
+    padding: 18px 10px;
+}
+
+.footer-bottom p {
+    color: #aebdc9;
+    font-size: 11px;
+    text-align: center !important;
+}
+
+/* =====================================
+   MESSAGES
+   ===================================== */
+
+.directory-message,
+.form-message,
+.admin-message,
+#loginMessage,
+#archivesMessage {
+    font-size: 13px;
+}
+
+.directory-message.error,
+.form-message.error,
+.admin-message.error,
+#loginMessage.error {
+    color: #b42318;
+}
+
+.directory-message.success,
+.form-message.success,
+.admin-message.success,
+#loginMessage.success {
+    color: #087e78;
+}
+
+.directory-message:empty,
+.form-message:empty {
+    display: none;
+}
+
+/* =====================================
+   ACCESSIBILITÉ ET INTERACTIONS
+   ===================================== */
+
+button,
+input,
+select,
+textarea {
+    font: inherit;
+}
+
+button {
+    cursor: pointer;
+}
+
+button:disabled {
+    opacity: .6;
+    cursor: not-allowed;
+}
+
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+    outline: 3px solid var(--gold);
+    outline-offset: 3px;
+}
+
+/* =====================================
+   RESPONSIVE - TABLETTES
+   ===================================== */
+
+@media (max-width: 900px) {
+    .header-content {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .main-nav {
+        gap: 15px;
+    }
+
+    .island-stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .feature-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* =====================================
+   RESPONSIVE - TÉLÉPHONES
+   ===================================== */
+
+@media (max-width: 600px) {
+    .site-header {
+        padding: 16px 5%;
+    }
+
+    .header-content {
+        gap: 15px;
+    }
+
+    .brand {
+        justify-content: center;
+    }
+
+    .brand-text strong {
+        font-size: 13px;
+    }
+
+    .brand-text span {
+        font-size: 10px;
+    }
+
+    .brand-symbol {
+        width: 40px;
+        height: 40px;
+        font-size: 15px;
+    }
+
+    .flags {
+        justify-content: center;
+    }
+
+    .main-nav {
+        gap: 10px 15px;
+    }
+
+    .main-nav a {
+        font-size: 12px;
+    }
+
+    .hero {
+        min-height: 420px;
+        padding: 65px 7%;
+    }
+
+    .hero h2 {
+        font-size: 33px;
+    }
+
+    .hero-content > p {
+        font-size: 13px;
+    }
+
+    .hero-buttons {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .stats-section,
+    .intro-section {
+        padding: 55px 5%;
+    }
+
+    .stats-grid,
+    .feature-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .island-stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+    }
+
+    .island-card {
+        padding: 20px 10px;
+    }
+
+    .island-card h3 {
+        font-size: 14px;
+    }
+
+    .section-heading h2,
+    .join-section h2,
+    .community-content h2 {
+        font-size: 24px;
+    }
+
+    .footer-main {
+        gap: 15px;
+    }
+
+    .footer-title {
+        font-size: 14px;
+    }
+
+    .creator-name {
+        font-size: 16px;
+    }
+
+    .site-footer {
+        padding: 35px 5% 0;
+    }
+}
