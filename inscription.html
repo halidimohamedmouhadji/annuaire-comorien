@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#10243a">
+    <meta name="description" content="Inscription des étudiants comoriens résidant à Ziguinchor.">
+    <title>Inscription | Annuaire Comorien</title>
+    <link rel="stylesheet" href="css/style.css">
+
+    <style>
+        .form-hero {
+            background: linear-gradient(120deg, #10243a, #087e78);
+            color: white;
+            text-align: center;
+            padding: 65px 0;
+        }
+
+        .form-hero .section-label {
+            color: #e4d1a8;
+        }
+
+        .form-hero h1 {
+            font-size: clamp(30px, 5vw, 45px);
+            margin-bottom: 12px;
+        }
+
+        .form-hero p {
+            color: rgba(255,255,255,.78);
+            font-size: 14px;
+            line-height: 1.7;
+        }
+
+        .registration-section {
+            background: #f8f7f3;
+            padding: 50px 0 90px;
+        }
+
+        .president-card {
+            max-width: 850px;
+            margin: 0 auto 25px;
+            padding: 24px;
+            background: white;
+            border: 1px solid #e5e9eb;
+            border-left: 5px solid #c6a66b;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 8px 25px rgba(16,36,58,.05);
+        }
+
+        .president-label {
+            display: block;
+            color: #087e78;
+            font-size: 11px;
+            font-weight: 800;
+            letter-spacing: 2px;
+            margin-bottom: 9px;
+        }
+
+        .president-card h2 {
+            color: #10243a;
+            font-size: 23px;
+            margin: 0 0 7px;
+        }
+
+        .president-card p {
+            color: #a88952;
+            font-size: 14px;
+            font-weight: 700;
+            margin: 0;
+        }
+
+        .registration-card {
+            max-width: 850px;
+            margin: auto;
+            padding: 38px;
+            background: white;
+            border: 1px solid #e5e9eb;
+            border-radius: 12px;
+            box-shadow: 0 12px 35px rgba(16,36,58,.06);
+        }
+
+        .registration-card h2 {
+            color: #10243a;
+            font-size: 25px;
+            margin-bottom: 8px;
+        }
+
+        .form-intro {
+            color: #71808c;
+            font-size: 13px;
+            margin-bottom: 28px;
+        }
+
+        .registration-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 7px;
+        }
+
+        .form-group.full {
+            grid-column: 1 / -1;
+        }
+
+        .form-group label {
+            color: #263746;
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            min-height: 48px;
+            border: 1px solid #dce3e5;
+            border-radius: 6px;
+            padding: 11px 13px;
+            background: white;
+            color: #263746;
+            outline: none;
+            font-size: 13px;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus {
+            border-color: #087e78;
+            box-shadow: 0 0 0 3px rgba(8,126,120,.10);
+        }
+
+        .privacy-note {
+            background: #f1f4f5;
+            padding: 16px;
+            border-left: 3px solid #087e78;
+            margin-top: 25px;
+            border-radius: 5px;
+            color: #71808c;
+            font-size: 12px;
+            line-height: 1.7;
+        }
+
+        .privacy-note strong {
+            color: #10243a;
+        }
+
+        .submit-area {
+            margin-top: 25px;
+        }
+
+        .submit-area button {
+            width: 100%;
+            border: none;
+            cursor: pointer;
+        }
+
+        .submit-area button:disabled {
+            opacity: .65;
+            cursor: wait;
+        }
+
+        .form-message {
+            margin-top: 15px;
+            font-size: 13px;
+            text-align: center;
+            line-height: 1.6;
+        }
+
+        .form-message.error {
+            color: #a83232;
+        }
+
+        .form-message.success {
+            color: #087e78;
+        }
+
+        @media(max-width: 600px) {
+            .form-hero {
+                padding: 50px 15px;
+            }
+
+            .registration-section {
+                padding: 35px 0 45px;
+            }
+
+            .registration-card {
+                padding: 23px 18px;
+            }
+
+            .registration-grid {
+                grid-template-columns: 1fr;
+                gap: 16px;
+            }
+
+            .form-group.full {
+                grid-column: auto;
+            }
+
+            .president-card {
+                padding: 20px 12px;
+            }
+
+            .president-card h2 {
+                font-size: 19px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header class="site-header">
+    <div class="container header-content">
+
+        <a href="index.html" class="brand">
+            <div class="brand-symbol">AC</div>
+            <div class="brand-text">
+                <strong>ANNUAIRE COMORIEN</strong>
+                <span>Étudiants comoriens à Ziguinchor</span>
+            </div>
+        </a>
+
+        <div class="flags">
+            <img src="https://flagcdn.com/km.svg" class="country-flag" alt="Drapeau des Comores">
+            <img src="https://flagcdn.com/sn.svg" class="country-flag" alt="Drapeau du Sénégal">
+        </div>
+
+        <nav class="main-nav">
+            <a href="index.html">Accueil</a>
+            <a href="annuaire.html">Annuaire</a>
+            <a href="inscription.html" class="active">Inscription</a>
+            <a href="apropos.html">À propos</a>
+        </nav>
+
+    </div>
+</header>
+
+<main>
+
+    <section class="form-hero">
+        <div class="container">
+            <span class="section-label">REJOIGNEZ NOTRE COMMUNAUTÉ</span>
+            <h1>Inscription des étudiants</h1>
+            <p>
+                Remplissez le formulaire pour rejoindre
+                l'annuaire des étudiants comoriens à Ziguinchor.
+            </p>
+        </div>
+    </section>
+
+    <section class="registration-section">
+        <div class="container">
+
+            <div class="president-card">
+                <span class="president-label">PRÉSIDENCE DE LA COMMUNAUTÉ</span>
+                <h2>Mme SAID BACAR NABAT</h2>
+                <p>Présidente · Mandat 2026–2027</p>
+            </div>
+
+            <div class="registration-card">
+
+                <h2>Vos informations</h2>
+
+                <p class="form-intro">
+                    Les champs marqués d'un astérisque (*) sont obligatoires.
+                </p>
+
+                <form id="registrationForm">
+
+                    <div class="registration-grid">
+
+                        <div class="form-group">
+                            <label for="nom">Nom *</label>
+                            <input type="text" id="nom" name="nom" placeholder="Votre nom" autocomplete="family-name" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="prenom">Prénom *</label>
+                            <input type="text" id="prenom" name="prenom" placeholder="Votre prénom" autocomplete="given-name" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="ile">Île d'origine *</label>
+                            <select id="ile" name="ile" required>
+                                <option value="">Choisir votre île</option>
+                                <option value="Anjouan">Anjouan</option>
+                                <option value="Grande Comore">Grande Comore</option>
+                                <option value="Mohéli">Mohéli</option>
+                                <option value="Mayotte">Mayotte</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="ville">Ville d'origine *</label>
+                            <input type="text" id="ville" name="ville" placeholder="Votre ville d'origine" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="quartier_origine">Quartier d'origine *</label>
+                            <input type="text" id="quartier_origine" name="quartier_origine" placeholder="Votre quartier" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="filiere">Filière / Formation *</label>
+                            <input type="text" id="filiere" name="filiere" placeholder="Ex : Ingénierie Informatique" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="universite">Établissement *</label>
+                            <input type="text" id="universite" name="universite" placeholder="Nom de votre établissement" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="residence">Lieu de résidence à Ziguinchor *</label>
+                            <input type="text" id="residence" name="residence" placeholder="Votre quartier de résidence" required>
+                        </div>
+
+                        <div class="form-group full">
+                            <label for="telephone">Numéro de téléphone *</label>
+                            <input type="tel" id="telephone" name="telephone" placeholder="Ex : +221 77 000 00 00" autocomplete="tel" required>
+                        </div>
+
+                    </div>
+
+                    <div class="privacy-note">
+                        <strong>Protection de vos informations :</strong>
+                        vos coordonnées personnelles et informations privées
+                        ne seront pas affichées publiquement. Elles seront
+                        réservées aux administrateurs autorisés de l'annuaire.
+                    </div>
+
+                    <div class="submit-area">
+                        <button type="submit" class="btn-primary">
+                            Envoyer mon inscription →
+                        </button>
+
+                        <p id="formMessage" class="form-message" aria-live="polite"></p>
+                    </div>
+
+                </form>
+
+            </div>
+
+        </div>
+    </section>
+
+</main>
+<footer class="site-footer">
+    <div class="container">
+
+        <div class="footer-main">
+
+            <div class="footer-flags">
+                <img src="https://flagcdn.com/km.svg"
+                     class="country-flag"
+                     alt="Drapeau des Comores">
+
+                <img src="https://flagcdn.com/sn.svg"
+                     class="country-flag"
+                     alt="Drapeau du Sénégal">
+            </div>
+
+            <h2 class="footer-title">
+                ANNUAIRE DES ÉTUDIANTS COMORIENS À ZIGUINCHOR
+            </h2>
+
+            <p class="footer-description">
+                Unis par nos origines, connectés par notre avenir.
+            </p>
+
+            <div class="creator-section">
+                <span class="created-label">
+                    UN PROJET CRÉÉ ET DÉVELOPPÉ PAR
+                </span>
+
+                <h3 class="creator-name">
+                    HALIDI MOHAMED MOUHADJI
+                </h3>
+
+                <p>Étudiant en Ingénierie Informatique</p>
+                <p>Créateur et développeur du projet</p>
+                <p class="project-date">Depuis le 9 novembre 2026</p>
+            </div>
+
+        </div>
+
+        <div class="footer-bottom">
+            <p>
+                © 2026 Annuaire des Étudiants Comoriens à Ziguinchor.
+                Tous droits réservés.
+            </p>
+        </div>
+
+    </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="js/inscription.js"></script>
+
+</body>
+</html>

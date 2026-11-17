@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#10243a">
+    <meta name="description" content="Découvrez l'histoire et la vision de l'Annuaire des étudiants comoriens à Ziguinchor.">
+    <title>À propos | Annuaire Comorien</title>
+    <link rel="stylesheet" href="css/style.css">
+
+    <style>
+        .about-hero {
+            background: linear-gradient(120deg, #10243a, #087e78);
+            color: white;
+            text-align: center;
+            padding: 85px 20px;
+        }
+
+        .about-hero .eyebrow {
+            color: #e4d1a8;
+        }
+
+        .about-hero h1 {
+            font-size: clamp(30px, 5vw, 48px);
+            line-height: 1.25;
+            margin: 15px 0;
+        }
+
+        .about-hero p:last-child {
+            max-width: 650px;
+            margin: auto;
+            color: rgba(255,255,255,.82);
+            font-size: 15px;
+            line-height: 1.8;
+        }
+
+        .about-section {
+            padding: 70px 0;
+            background: #faf9f6;
+        }
+
+        .about-section:nth-of-type(odd) {
+            background: #f1f4f6;
+        }
+
+        .about-section .eyebrow {
+            color: #087e78;
+            font-size: 11px;
+            font-weight: 800;
+            letter-spacing: 2px;
+            margin-bottom: 12px;
+        }
+
+        .about-section h2 {
+            color: #10243a;
+            font-size: clamp(25px, 4vw, 32px);
+            margin-bottom: 22px;
+        }
+
+        .about-section p {
+            color: #526171;
+            font-size: 14px;
+            line-height: 1.9;
+            margin-bottom: 15px;
+        }
+
+        .about-content {
+            max-width: 850px;
+            margin: auto;
+        }
+
+        .about-features {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 22px;
+            margin-top: 30px;
+        }
+
+        .about-feature-card {
+            background: white;
+            border: 1px solid #e5e9eb;
+            border-radius: 12px;
+            padding: 28px 24px;
+            box-shadow: 0 8px 25px rgba(16,36,58,.05);
+            transition: transform .2s ease, box-shadow .2s ease;
+        }
+
+        .about-feature-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 14px 30px rgba(16,36,58,.09);
+        }
+
+        .about-feature-card h3 {
+            color: #10243a;
+            font-size: 19px;
+            margin-bottom: 12px;
+        }
+
+        .about-feature-card p {
+            margin-bottom: 0;
+            font-size: 13px;
+        }
+
+        .creator-card {
+            max-width: 850px;
+            background: white;
+            border: 1px solid #e5e9eb;
+            border-left: 5px solid #c6a66b;
+            border-radius: 12px;
+            padding: 32px;
+            margin-top: 25px;
+            box-shadow: 0 8px 25px rgba(16,36,58,.05);
+        }
+
+        .creator-card h3 {
+            color: #10243a;
+            font-size: 22px;
+            margin-bottom: 15px;
+        }
+
+        .creator-card strong {
+            color: #087e78;
+        }
+
+        @media(max-width: 750px) {
+            .about-features {
+                grid-template-columns: 1fr;
+            }
+
+            .about-section {
+                padding: 50px 0;
+            }
+
+            .about-feature-card {
+                padding: 23px;
+            }
+
+            .creator-card {
+                padding: 25px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<header class="site-header">
+    <div class="container header-content">
+
+        <a href="index.html" class="brand">
+            <div class="brand-symbol">AC</div>
+            <div class="brand-text">
+                <strong>ANNUAIRE COMORIEN</strong>
+                <span>Étudiants comoriens à Ziguinchor</span>
+            </div>
+        </a>
+
+        <div class="flags">
+            <img src="https://flagcdn.com/km.svg" class="country-flag" alt="Drapeau des Comores">
+            <img src="https://flagcdn.com/sn.svg" class="country-flag" alt="Drapeau du Sénégal">
+        </div>
+
+        <nav class="main-nav">
+            <a href="index.html">Accueil</a>
+            <a href="annuaire.html">Annuaire</a>
+            <a href="inscription.html">Inscription</a>
+            <a href="apropos.html" class="active">À propos</a>
+        </nav>
+
+    </div>
+</header>
+
+<main>
+
+    <section class="about-hero">
+        <div class="container">
+            <p class="eyebrow">NOTRE HISTOIRE</p>
+
+            <h1>Unis par nos origines,<br>ensemble pour notre avenir.</h1>
+
+            <p>
+                Une plateforme dédiée aux étudiants comoriens
+                vivant et étudiant à Ziguinchor.
+            </p>
+        </div>
+    </section>
+
+    <section class="about-section">
+        <div class="container about-content">
+            <p class="eyebrow">QUI SOMMES-NOUS ?</p>
+            <h2>À propos du projet</h2>
+
+            <p>
+                L'Annuaire des étudiants comoriens à Ziguinchor
+                est une initiative visant à rassembler les étudiants
+                comoriens résidant en Casamance au sein d'une
+                plateforme numérique moderne.
+            </p>
+
+            <p>
+                Le projet facilite la mise en relation, favorise
+                la solidarité et contribue à renforcer les liens
+                entre les étudiants, quelle que soit leur île
+                d'origine ou leur filière.
+            </p>
+        </div>
+    </section>
+
+    <section class="about-section">
+        <div class="container">
+            <p class="eyebrow">NOS ENGAGEMENTS</p>
+            <h2>Notre vision</h2>
+
+            <div class="about-features">
+
+                <article class="about-feature-card">
+                    <h3>Rassembler</h3>
+                    <p>
+                        Réunir les étudiants comoriens dans
+                        un espace commun.
+                    </p>
+                </article>
+
+                <article class="about-feature-card">
+                    <h3>Connecter</h3>
+                    <p>
+                        Faciliter les échanges et les relations
+                        entre les membres.
+                    </p>
+                </article>
+
+                <article class="about-feature-card">
+                    <h3>Construire</h3>
+                    <p>
+                        Encourager l'entraide, les initiatives
+                        et les opportunités.
+                    </p>
+                </article>
+
+            </div>
+        </div>
+    </section>
+
+    <section class="about-section">
+        <div class="container">
+            <p class="eyebrow">À L'ORIGINE DU PROJET</p>
+            <h2>Le créateur du projet</h2>
+
+            <div class="creator-card">
+                <h3>HALIDI MOHAMED MOUHADJI</h3>
+
+                <p>
+                    Étudiant en ingénierie informatique
+                    à l'Université Assane Seck de Ziguinchor.
+                </p>
+
+                <p>
+                    Ce projet est né de la volonté de mettre
+                    les compétences numériques au service
+                    de la communauté estudiantine comorienne.
+                </p>
+
+                <p>
+                    <strong>Créateur et développeur du projet</strong>
+                </p>
+
+                <p>Depuis le 9 novembre 2026</p>
+            </div>
+        </div>
+    </section>
+
+</main>
+
+<footer class="site-footer">
+    <div class="container">
+
+        <div class="footer-main">
+
+            <div class="footer-flags">
+                <img src="https://flagcdn.com/km.svg"
+                     class="country-flag"
+                     alt="Drapeau des Comores">
+
+                <img src="https://flagcdn.com/sn.svg"
+                     class="country-flag"
+                     alt="Drapeau du Sénégal">
+            </div>
+
+            <h2 class="footer-title">
+                ANNUAIRE DES ÉTUDIANTS COMORIENS À ZIGUINCHOR
+            </h2>
+
+            <p class="footer-description">
+                Unis par nos origines, connectés par notre avenir.
+            </p>
+
+            <div class="creator-section">
+                <span class="created-label">
+                    UN PROJET CRÉÉ ET DÉVELOPPÉ PAR
+                </span>
+
+                <h3 class="creator-name">
+                    HALIDI MOHAMED MOUHADJI
+                </h3>
+
+                <p>Étudiant en Ingénierie Informatique</p>
+                <p>Créateur et développeur du projet</p>
+                <p class="project-date">Depuis le 9 novembre 2026</p>
+            </div>
+
+        </div>
+
+        <div class="footer-bottom">
+            <p>
+                © 2026 Annuaire des Étudiants Comoriens à Ziguinchor.
+                Tous droits réservés.
+            </p>
+        </div>
+
+    </div>
+</footer>
+
+</body>
+</html>

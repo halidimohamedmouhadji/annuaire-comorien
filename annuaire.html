@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#10243a">
+    <meta name="description" content="Consultez l'annuaire des étudiants comoriens à Ziguinchor.">
+    <title>Annuaire des étudiants | Annuaire Comorien</title>
+
+    <link rel="stylesheet" href="css/style.css">
+
+    <style>
+        .directory-hero {
+            background: linear-gradient(120deg, #10243a, #087e78);
+            color: white;
+            padding: 75px 0;
+            text-align: center;
+        }
+
+        .directory-hero .section-label {
+            color: #e4d1a8;
+        }
+
+        .directory-hero h1 {
+            font-size: clamp(32px, 5vw, 48px);
+            line-height: 1.2;
+            margin-bottom: 15px;
+        }
+
+        .directory-hero p {
+            max-width: 650px;
+            margin: auto;
+            color: rgba(255,255,255,.78);
+            font-size: 14px;
+            line-height: 1.7;
+        }
+
+        .directory-section {
+            padding: 70px 0 90px;
+            background: #f8f7f3;
+            min-height: 500px;
+        }
+
+        .directory-heading {
+            text-align: center;
+            margin-bottom: 35px;
+        }
+
+        .directory-heading h2 {
+            color: #10243a;
+            font-size: 30px;
+            margin-bottom: 8px;
+        }
+
+        .directory-heading p {
+            color: #71808c;
+            font-size: 14px;
+        }
+
+        .search-panel {
+            background: white;
+            border: 1px solid #e5e9eb;
+            border-radius: 12px;
+            padding: 25px;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 15px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(16,36,58,.05);
+        }
+
+        .search-panel input,
+        .search-panel select {
+            width: 100%;
+            min-height: 48px;
+            padding: 12px 14px;
+            border: 1px solid #dce3e5;
+            border-radius: 6px;
+            outline: none;
+            background: white;
+            color: #263746;
+            font-size: 13px;
+        }
+
+        .search-panel input:focus,
+        .search-panel select:focus {
+            border-color: #087e78;
+            box-shadow: 0 0 0 3px rgba(8,126,120,.10);
+        }
+
+        .directory-count {
+            color: #71808c;
+            font-size: 13px;
+            margin-bottom: 17px;
+        }
+
+        .students-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .student-card {
+            background: white;
+            border: 1px solid #e5e9eb;
+            border-radius: 10px;
+            padding: 25px;
+            box-shadow: 0 7px 22px rgba(16,36,58,.04);
+            transition: transform .2s ease, box-shadow .2s ease;
+        }
+
+        .student-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 14px 30px rgba(16,36,58,.09);
+        }
+
+        .student-avatar {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: #e5f2f0;
+            color: #087e78;
+            display: grid;
+            place-items: center;
+            font-weight: 800;
+            font-size: 17px;
+            margin-bottom: 17px;
+        }
+
+        .student-card h3 {
+            color: #10243a;
+            font-size: 17px;
+            margin-bottom: 12px;
+        }
+
+        .student-info {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            color: #71808c;
+            font-size: 12px;
+        }
+
+        .student-info strong {
+            color: #263746;
+            font-weight: 600;
+        }
+
+        .empty-state {
+            background: white;
+            border: 1px dashed #cbd5d9;
+            border-radius: 10px;
+            text-align: center;
+            padding: 55px 20px;
+            grid-column: 1 / -1;
+            color: #71808c;
+        }
+
+        .empty-state h3 {
+            color: #10243a;
+            margin-bottom: 9px;
+        }
+
+        .empty-state p {
+            color: #71808c;
+            font-size: 13px;
+        }
+
+        .directory-message {
+            text-align: center;
+            padding: 20px;
+            color: #71808c;
+            font-size: 13px;
+            line-height: 1.6;
+        }
+
+        .directory-message:empty {
+            display: none;
+        }
+
+        .directory-message.error {
+            color: #a83232;
+        }
+
+        .directory-message.success {
+            color: #087e78;
+        }
+
+        @media (max-width: 800px) {
+            .students-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .search-panel {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .search-panel input {
+                grid-column: 1 / -1;
+            }
+        }
+
+        @media (max-width: 550px) {
+            .directory-hero {
+                padding: 60px 15px;
+            }
+
+            .directory-section {
+                padding: 55px 0;
+            }
+
+            .search-panel {
+                grid-template-columns: 1fr;
+                padding: 18px;
+            }
+
+            .search-panel input {
+                grid-column: auto;
+            }
+
+            .students-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .directory-heading h2 {
+                font-size: 25px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header class="site-header">
+    <div class="container header-content">
+
+        <a href="index.html" class="brand">
+            <div class="brand-symbol">AC</div>
+            <div class="brand-text">
+                <strong>ANNUAIRE COMORIEN</strong>
+                <span>Étudiants comoriens à Ziguinchor</span>
+            </div>
+        </a>
+
+        <div class="flags">
+            <img src="https://flagcdn.com/km.svg" class="country-flag" alt="Drapeau des Comores">
+            <img src="https://flagcdn.com/sn.svg" class="country-flag" alt="Drapeau du Sénégal">
+        </div>
+
+        <nav class="main-nav">
+            <a href="index.html">Accueil</a>
+            <a href="annuaire.html" class="active">Annuaire</a>
+            <a href="inscription.html">Inscription</a>
+            <a href="apropos.html">À propos</a>
+        </nav>
+
+    </div>
+</header>
+
+<main>
+
+    <section class="directory-hero">
+        <div class="container">
+            <span class="section-label">NOTRE COMMUNAUTÉ</span>
+
+            <h1>L'annuaire des étudiants</h1>
+
+            <p>
+                Retrouvez les étudiants comoriens résidant à Ziguinchor.
+                Découvrez les parcours et renforcez les liens de notre communauté.
+            </p>
+        </div>
+    </section>
+
+    <section class="directory-section">
+        <div class="container">
+
+            <div class="directory-heading">
+                <span class="section-label">ESPACE PUBLIC</span>
+                <h2>Découvrir nos membres</h2>
+                <p>Recherchez un étudiant dans notre communauté.</p>
+            </div>
+
+            <div class="search-panel">
+
+                <input
+                    type="search"
+                    id="searchName"
+                    placeholder="Rechercher par nom ou prénom..."
+                    aria-label="Rechercher un étudiant"
+                >
+
+                <select id="filterIsland" aria-label="Filtrer par île">
+                    <option value="">Toutes les îles</option>
+                    <option value="Anjouan">Anjouan</option>
+                    <option value="Grande Comore">Grande Comore</option>
+                    <option value="Mohéli">Mohéli</option>
+                    <option value="Mayotte">Mayotte</option>
+                </select>
+
+                <input
+                    type="search"
+                    id="filterField"
+                    placeholder="Rechercher une filière..."
+                    aria-label="Filtrer par filière"
+                >
+
+            </div>
+
+            <p class="directory-count" id="directoryCount" aria-live="polite">
+                Chargement de l'annuaire...
+            </p>
+
+            <div class="students-grid" id="studentsGrid">
+                <div class="empty-state">
+                    <h3>Chargement en cours</h3>
+                    <p>Veuillez patienter pendant le chargement de l'annuaire.</p>
+                </div>
+            </div>
+
+            <p class="directory-message" id="directoryMessage" aria-live="polite"></p>
+
+        </div>
+    </section>
+
+</main>
+
+<footer class="site-footer">
+    <div class="container">
+
+        <div class="footer-main">
+
+            <div class="footer-flags">
+                <img src="https://flagcdn.com/km.svg" class="country-flag" alt="Drapeau des Comores">
+                <img src="https://flagcdn.com/sn.svg" class="country-flag" alt="Drapeau du Sénégal">
+            </div>
+
+            <h2 class="footer-title">
+                ANNUAIRE DES ÉTUDIANTS COMORIENS À ZIGUINCHOR
+            </h2>
+
+            <p class="footer-description">
+                Unis par nos origines, connectés par notre avenir.
+            </p>
+
+            <div class="creator-section">
+                <span class="created-label">UN PROJET CRÉÉ ET DÉVELOPPÉ PAR</span>
+                <h3 class="creator-name">HALIDI MOHAMED MOUHADJI</h3>
+                <p>Étudiant en Ingénierie Informatique</p>
+                <p>Créateur et développeur du projet</p>
+                <p class="project-date">Depuis le 9 novembre 2026</p>
+            </div>
+
+        </div>
+
+        <div class="footer-bottom">
+            <p>
+                © 2026 Annuaire des Étudiants Comoriens à Ziguinchor.
+                Tous droits réservés.
+            </p>
+        </div>
+
+    </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="js/annuaire.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,726 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#10243a">
+    <meta name="description" content="Tableau de bord de gestion de l'Annuaire Comorien.">
+    <title>Administration | Annuaire Comorien</title>
+    <link rel="stylesheet" href="css/style.css">
+
+    <style>
+        .admin-main {
+            min-height: 75vh;
+            padding: 45px 20px;
+            background: #f4f6f8;
+        }
+
+        .admin-container {
+            max-width: 1250px;
+            margin: auto;
+        }
+
+        .admin-heading { margin-bottom: 30px; }
+        .admin-heading h1 { color: #10243a; margin-bottom: 8px; }
+        .admin-heading p { color: #687586; }
+
+        .admin-welcome {
+            background: #10243a;
+            color: white;
+            padding: 30px;
+            border-radius: 16px;
+            margin-bottom: 30px;
+        }
+
+        .admin-welcome h2 { margin-top: 15px; }
+
+        .admin-welcome > p:last-child {
+            line-height: 1.7;
+            color: #e0e8ef;
+        }
+
+        /* STATISTIQUES ADMINISTRATION */
+        .admin-statistics {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .admin-stat-card {
+            position: relative;
+            overflow: hidden;
+            background: #ffffff;
+            padding: 25px;
+            border-radius: 14px;
+            border: 1px solid #e5eaf0;
+            box-shadow: 0 5px 18px rgba(16,36,58,.05);
+        }
+
+        .admin-stat-card::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 5px;
+            height: 100%;
+            background: #087e78;
+        }
+
+        .admin-stat-card.archive-stat::after {
+            background: #a83232;
+        }
+
+        .admin-stat-icon {
+            font-size: 30px;
+            margin-bottom: 12px;
+        }
+
+        .admin-stat-card h3 {
+            color: #10243a;
+            font-size: 34px;
+            margin: 0 0 8px;
+            font-weight: 800;
+        }
+
+        .admin-stat-card p {
+            color: #687586;
+            font-size: 14px;
+            margin: 0;
+        }
+
+        .admin-stat-card .stat-caption {
+            display: block;
+            margin-top: 10px;
+            color: #94a3b8;
+            font-size: 12px;
+        }
+
+        .admin-stats-message {
+            grid-column: 1 / -1;
+            color: #687586;
+            font-size: 13px;
+            margin-top: -8px;
+        }
+
+        .admin-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+        }
+
+        .admin-card {
+            display: block;
+            background: white;
+            padding: 25px;
+            border-radius: 14px;
+            text-decoration: none;
+            color: #10243a;
+            border: 1px solid #e5eaf0;
+            box-shadow: 0 5px 18px rgba(16,36,58,.05);
+            transition: transform .2s, box-shadow .2s;
+        }
+
+        .admin-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 25px rgba(16,36,58,.10);
+        }
+
+        .admin-card:focus-visible {
+            outline: 3px solid #087e78;
+            outline-offset: 4px;
+        }
+
+        .admin-icon {
+            font-size: 30px;
+            margin-bottom: 15px;
+        }
+
+        .admin-card h3 { margin: 0 0 10px; }
+
+        .admin-card p {
+            color: #687586;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        .admin-role {
+            display: inline-block;
+            background: #e7f3f1;
+            color: #087e78;
+            padding: 7px 13px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: bold;
+        }
+
+        .students-management {
+            margin-top: 40px;
+            background: white;
+            padding: 28px;
+            border-radius: 16px;
+            border: 1px solid #e5eaf0;
+            box-shadow: 0 5px 18px rgba(16,36,58,.05);
+        }
+
+        .management-heading { margin-bottom: 22px; }
+
+        .management-heading h2 {
+            color: #10243a;
+            margin-bottom: 7px;
+        }
+
+        .management-heading p {
+            color: #687586;
+            font-size: 14px;
+        }
+
+        .students-filters {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .students-filters input,
+        .students-filters select {
+            width: 100%;
+            min-height: 45px;
+            padding: 10px 13px;
+            border: 1px solid #dce3e9;
+            border-radius: 8px;
+            background: white;
+            color: #263746;
+            font-size: 14px;
+        }
+
+        .students-filters input:focus,
+        .students-filters select:focus {
+            outline: 2px solid #087e78;
+            border-color: #087e78;
+        }
+
+        .students-total {
+            color: #087e78;
+            font-size: 14px;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        .students-table-wrapper {
+            width: 100%;
+            overflow-x: auto;
+            border: 1px solid #e5eaf0;
+            border-radius: 10px;
+        }
+
+        .students-table {
+            width: 100%;
+            min-width: 1500px;
+            border-collapse: collapse;
+            font-size: 13px;
+        }
+
+        .students-table th {
+            background: #10243a;
+            color: white;
+            padding: 14px 12px;
+            text-align: left;
+            white-space: nowrap;
+        }
+
+        .students-table td {
+            padding: 13px 12px;
+            border-bottom: 1px solid #e9edf1;
+            color: #405061;
+            vertical-align: top;
+        }
+
+        .students-table tbody tr:hover { background: #f6faf9; }
+        .students-table tbody tr:last-child td { border-bottom: none; }
+
+        .students-table a {
+            color: #087e78;
+            font-weight: bold;
+        }
+
+        .management-message {
+            padding: 15px;
+            color: #687586;
+            font-size: 14px;
+        }
+
+        .management-message.error { color: #a83232; }
+
+        .student-actions {
+            display: flex;
+            gap: 7px;
+            flex-wrap: wrap;
+            min-width: 230px;
+        }
+
+        .student-actions button {
+            padding: 8px 10px;
+            border: none;
+            border-radius: 6px;
+            color: white;
+            font-size: 12px;
+            cursor: pointer;
+        }
+
+        .student-actions button:disabled {
+            opacity: .6;
+            cursor: not-allowed;
+        }
+
+        .edit-student-button { background: #087e78; }
+
+        .archive-student-button {
+            background: #c6a66b;
+            color: #10243a !important;
+        }
+
+        .delete-student-button { background: #a83232; }
+
+        .student-modal {
+            position: fixed;
+            inset: 0;
+            z-index: 1000;
+            background: rgba(16,36,58,.75);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            overflow-y: auto;
+        }
+
+        .student-modal[hidden] { display: none; }
+
+        .student-modal-content {
+            width: 100%;
+            max-width: 550px;
+            max-height: 90vh;
+            overflow-y: auto;
+            background: white;
+            padding: 25px;
+            border-radius: 14px;
+        }
+
+        .student-modal-content h2 {
+            color: #10243a;
+            margin-bottom: 20px;
+        }
+
+        .student-modal-content label {
+            display: block;
+            margin: 12px 0 6px;
+            color: #405061;
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        .student-modal-content input,
+        .student-modal-content select {
+            width: 100%;
+            padding: 11px;
+            border: 1px solid #dce3e9;
+            border-radius: 7px;
+            box-sizing: border-box;
+        }
+
+        .student-modal-actions {
+            display: flex;
+            gap: 10px;
+            margin-top: 22px;
+            flex-wrap: wrap;
+        }
+
+        .student-modal-actions button {
+            padding: 12px 15px;
+            border: none;
+            border-radius: 7px;
+            cursor: pointer;
+            background: #087e78;
+            color: white;
+        }
+
+        .student-modal-actions button:last-child { background: #687586; }
+
+        .admin-logout {
+            margin-top: 30px;
+            padding: 13px 22px;
+            border: none;
+            border-radius: 8px;
+            background: #a83232;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background .2s;
+        }
+
+        .admin-logout:hover { background: #852727; }
+        .admin-logout:disabled { opacity: .65; cursor: not-allowed; }
+
+        #adminMessage {
+            margin-top: 20px;
+            color: #52616f;
+            line-height: 1.6;
+        }
+
+        #adminMessage.error { color: #a83232; }
+        #adminMessage.success { color: #087e78; }
+
+        .header > .container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        .header .brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: #10243a;
+            text-decoration: none;
+        }
+
+        .brand-logo {
+            width: 46px;
+            height: 46px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #10243a;
+            color: white;
+            border-radius: 12px;
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+        .header .brand strong,
+        .header .brand small { display: block; }
+
+        .header .brand small {
+            margin-top: 4px;
+            color: #718096;
+            font-size: 12px;
+        }
+
+        .nav {
+            display: flex;
+            align-items: center;
+            gap: 22px;
+            flex-wrap: wrap;
+        }
+
+        .nav a {
+            color: #10243a;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .nav a:hover { color: #087e78; }
+
+        .footer {
+            background: #10243a;
+            color: white;
+            padding: 30px 20px;
+            text-align: center;
+        }
+
+        .footer p { margin: 7px 0; line-height: 1.6; }
+        .footer p:first-child { color: #c6a66b; }
+
+        @media (max-width: 700px) {
+            .admin-main { padding: 30px 15px; }
+            .admin-welcome { padding: 22px; }
+
+            .header > .container {
+                flex-direction: column;
+                padding-top: 15px;
+                padding-bottom: 15px;
+            }
+
+            .nav { justify-content: center; gap: 14px; }
+            .admin-grid { grid-template-columns: 1fr; }
+            .students-management { padding: 18px 12px; }
+            .students-filters { grid-template-columns: 1fr; }
+            .admin-statistics { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+
+<body>
+
+<header class="header">
+    <div class="container">
+        <a href="index.html" class="brand">
+            <span class="brand-logo">AC</span>
+            <span>
+                <strong>ANNUAIRE COMORIEN</strong>
+                <small>Administration</small>
+            </span>
+        </a>
+
+        <nav class="nav">
+            <a href="index.html">Accueil</a>
+            <a href="annuaire.html">Annuaire public</a>
+            <a href="archives.html">Archives</a>
+        </nav>
+    </div>
+</header>
+
+<main class="admin-main">
+    <div class="admin-container">
+
+        <div class="admin-heading">
+            <p class="eyebrow">ESPACE DE GESTION</p>
+            <h1>Tableau de bord</h1>
+            <p>Bienvenue dans l'espace d'administration de la communauté.</p>
+        </div>
+
+        <section class="admin-welcome">
+            <p class="admin-role" id="adminRole">Vérification du rôle...</p>
+            <h2>Gestion de la communauté</h2>
+            <p>
+                Retrouvez ici les outils de gestion des inscriptions,
+                des étudiants et des archives.
+            </p>
+        </section>
+
+        <!-- STATISTIQUES DE L'ADMINISTRATION -->
+        <section class="admin-statistics">
+
+            <article class="admin-stat-card">
+                <div class="admin-stat-icon">👨‍🎓</div>
+                <h3 id="adminTotalStudents">—</h3>
+                <p>Étudiants actuellement inscrits</p>
+                <span class="stat-caption">Dossiers actifs dans l'annuaire</span>
+            </article>
+
+            <article class="admin-stat-card archive-stat">
+                <div class="admin-stat-icon">📁</div>
+                <h3 id="adminTotalArchives">—</h3>
+                <p>Étudiants dans les archives</p>
+                <span class="stat-caption">Dossiers archivés</span>
+            </article>
+
+            <p
+                id="adminStatsMessage"
+                class="admin-stats-message"
+                aria-live="polite"
+            >Chargement des statistiques...</p>
+
+        </section>
+
+        <section class="admin-grid">
+
+            <a href="annuaire.html" class="admin-card">
+                <div class="admin-icon">👥</div>
+                <h3>Annuaire des étudiants</h3>
+                <p>Consulter la liste publique des étudiants inscrits.</p>
+            </a>
+
+            <a href="#studentsManagement" class="admin-card">
+                <div class="admin-icon">📋</div>
+                <h3>Gestion complète des étudiants</h3>
+                <p>Consulter et gérer les dossiers des étudiants autorisés.</p>
+            </a>
+
+            <a href="inscription.html" class="admin-card">
+                <div class="admin-icon">📝</div>
+                <h3>Inscriptions</h3>
+                <p>Accéder au formulaire d'inscription des étudiants.</p>
+            </a>
+
+            <a href="archives.html" class="admin-card">
+                <div class="admin-icon">📁</div>
+                <h3>Archives</h3>
+                <p>Accéder aux dossiers archivés selon vos autorisations.</p>
+            </a>
+
+        </section>
+
+        <section class="students-management" id="studentsManagement">
+
+            <div class="management-heading">
+                <h2>Gestion complète des étudiants</h2>
+                <p>
+                    Consultez et gérez les dossiers des étudiants.
+                    Cette rubrique est réservée aux administrateurs autorisés.
+                </p>
+            </div>
+
+            <div class="students-filters">
+                <input
+                    type="search"
+                    id="adminSearchStudent"
+                    placeholder="Rechercher par nom ou prénom..."
+                    aria-label="Rechercher un étudiant"
+                >
+
+                <select id="adminFilterIsland" aria-label="Filtrer par île">
+                    <option value="">Toutes les îles</option>
+                    <option value="Anjouan">Anjouan</option>
+                    <option value="Grande Comore">Grande Comore</option>
+                    <option value="Mohéli">Mohéli</option>
+                    <option value="Mayotte">Mayotte</option>
+                </select>
+            </div>
+
+            <p class="students-total" id="adminStudentsTotal">
+                Chargement des étudiants...
+            </p>
+
+            <div class="students-table-wrapper">
+                <table class="students-table">
+                    <thead>
+                        <tr>
+                            <th>Nom</th>
+                            <th>Prénom</th>
+                            <th>Île d'origine</th>
+                            <th>Ville</th>
+                            <th>Quartier d'origine</th>
+                            <th>Filière</th>
+                            <th>Université</th>
+                            <th>Résidence</th>
+                            <th>Téléphone</th>
+                            <th>Date d'inscription</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="adminStudentsTableBody">
+                        <tr>
+                            <td colspan="11" class="management-message">
+                                Chargement des dossiers...
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <p id="adminStudentsMessage"
+               class="management-message"
+               aria-live="polite"></p>
+
+        </section>
+
+        <!-- FENÊTRE DE MODIFICATION -->
+        <div id="editStudentModal" class="student-modal" hidden>
+            <div class="student-modal-content">
+                <h2>Modifier les informations</h2>
+
+                <form id="editStudentForm">
+                    <input type="hidden" id="editStudentId">
+
+                    <label for="editNom">Nom</label>
+                    <input type="text" id="editNom" required>
+
+                    <label for="editPrenom">Prénom</label>
+                    <input type="text" id="editPrenom" required>
+
+                    <label for="editIle">Île d'origine</label>
+                    <select id="editIle" required>
+                        <option value="Anjouan">Anjouan</option>
+                        <option value="Grande Comore">Grande Comore</option>
+                        <option value="Mohéli">Mohéli</option>
+                        <option value="Mayotte">Mayotte</option>
+                    </select>
+
+                    <label for="editVille">Ville</label>
+                    <input type="text" id="editVille" required>
+
+                    <label for="editQuartier">Quartier d'origine</label>
+                    <input type="text" id="editQuartier">
+
+                    <label for="editFiliere">Filière</label>
+                    <input type="text" id="editFiliere" required>
+
+                    <label for="editUniversite">Université</label>
+                    <input type="text" id="editUniversite">
+
+                    <label for="editResidence">Résidence à Ziguinchor</label>
+                    <input type="text" id="editResidence">
+
+                    <label for="editTelephone">Téléphone</label>
+                    <input type="tel" id="editTelephone" required>
+
+                    <div class="student-modal-actions">
+                        <button type="submit" id="saveStudentChanges">
+                            Enregistrer les modifications
+                        </button>
+
+                        <button type="button" id="cancelEditStudent">
+                            Annuler
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <p id="adminMessage" aria-live="polite"></p>
+
+        <button type="button" class="admin-logout" id="logoutButton">
+            Se déconnecter
+        </button>
+
+    </div>
+</main>
+
+<footer class="site-footer">
+    <div class="container">
+
+        <div class="footer-main">
+
+            <div class="footer-flags">
+                <img src="https://flagcdn.com/km.svg"
+                     class="country-flag"
+                     alt="Drapeau des Comores">
+
+                <img src="https://flagcdn.com/sn.svg"
+                     class="country-flag"
+                     alt="Drapeau du Sénégal">
+            </div>
+
+            <h2 class="footer-title">
+                ANNUAIRE DES ÉTUDIANTS COMORIENS À ZIGUINCHOR
+            </h2>
+
+            <p class="footer-description">
+                Unis par nos origines, connectés par notre avenir.
+            </p>
+
+            <div class="creator-section">
+                <span class="created-label">
+                    UN PROJET CRÉÉ ET DÉVELOPPÉ PAR
+                </span>
+
+                <h3 class="creator-name">
+                    HALIDI MOHAMED MOUHADJI
+                </h3>
+
+                <p>Étudiant en Ingénierie Informatique</p>
+                <p>Créateur et développeur du projet</p>
+                <p class="project-date">Depuis le 9 novembre 2026</p>
+            </div>
+
+        </div>
+
+        <div class="footer-bottom">
+            <p>
+                © 2026 Annuaire des Étudiants Comoriens à Ziguinchor.
+                Tous droits réservés.
+            </p>
+        </div>
+
+    </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="js/admin.js"></script>
+
+</body>
+</html>

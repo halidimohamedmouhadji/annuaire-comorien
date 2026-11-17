@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Connexion sécurisée à l'administration de l'Annuaire Comorien.">
+    <meta name="theme-color" content="#10243a">
+    <title>Connexion administrateur | Annuaire Comorien</title>
+    <link rel="stylesheet" href="css/style.css">
+
+    <style>
+        .login-section {
+            min-height: 75vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 50px 20px;
+            background: #f4f6f8;
+        }
+
+        .login-card {
+            width: 100%;
+            max-width: 440px;
+            background: white;
+            padding: 38px;
+            border-radius: 18px;
+            box-shadow: 0 12px 40px rgba(16,36,58,.10);
+        }
+
+        .login-card h1 {
+            color: #10243a;
+            margin-bottom: 10px;
+        }
+
+        .login-card > p {
+            color: #687586;
+            margin-bottom: 28px;
+        }
+
+        .login-card label {
+            display: block;
+            margin: 18px 0 8px;
+            font-weight: 600;
+            color: #10243a;
+        }
+
+        .login-card input {
+            width: 100%;
+            padding: 14px;
+            border: 1px solid #d9e0e7;
+            border-radius: 9px;
+            font-size: 15px;
+            box-sizing: border-box;
+        }
+
+        .login-card input:focus {
+            outline: none;
+            border-color: #087e78;
+            box-shadow: 0 0 0 3px rgba(8,126,120,.10);
+        }
+
+        .login-card button {
+            width: 100%;
+            margin-top: 25px;
+            padding: 15px;
+            border: none;
+            border-radius: 9px;
+            background: #10243a;
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background .2s ease;
+        }
+
+        .login-card button:hover {
+            background: #087e78;
+        }
+
+        .login-card button:disabled {
+            opacity: .65;
+            cursor: not-allowed;
+        }
+
+        #loginMessage {
+            margin-top: 18px;
+            font-size: 14px;
+            text-align: center;
+            line-height: 1.5;
+        }
+
+        #loginMessage.error {
+            color: #b42318;
+        }
+
+        #loginMessage.success {
+            color: #087e78;
+        }
+
+        .login-note {
+            margin-top: 22px;
+            padding: 13px;
+            background: #f2f7f6;
+            border-radius: 9px;
+            font-size: 13px;
+            color: #52616f;
+            line-height: 1.6;
+        }
+
+        .header > .container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        .header .brand {
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: #10243a;
+        }
+
+        .brand-logo {
+            width: 46px;
+            height: 46px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #10243a;
+            color: white;
+            border-radius: 12px;
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+        .header .brand strong,
+        .header .brand small {
+            display: block;
+        }
+
+        .header .brand small {
+            margin-top: 4px;
+            color: #718096;
+            font-size: 12px;
+        }
+
+        .nav {
+            display: flex;
+            align-items: center;
+            gap: 22px;
+            flex-wrap: wrap;
+        }
+
+        .nav a {
+            color: #10243a;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .nav a:hover {
+            color: #087e78;
+        }
+
+        .footer {
+            background: #10243a;
+            color: white;
+            padding: 30px 20px;
+            text-align: center;
+        }
+
+        .footer p {
+            margin: 7px 0;
+            line-height: 1.5;
+        }
+
+        .footer p:first-child {
+            color: #c6a66b;
+            letter-spacing: 1px;
+        }
+
+        @media (max-width: 700px) {
+            .header > .container {
+                flex-direction: column;
+                padding-top: 15px;
+                padding-bottom: 15px;
+            }
+
+            .nav {
+                justify-content: center;
+                gap: 14px;
+            }
+
+            .login-card {
+                padding: 28px 22px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header class="header">
+    <div class="container">
+        <a href="index.html" class="brand">
+            <span class="brand-logo">AC</span>
+            <span>
+                <strong>ANNUAIRE COMORIEN</strong>
+                <small>Étudiants comoriens à Ziguinchor</small>
+            </span>
+        </a>
+
+        <nav class="nav">
+            <a href="index.html">Accueil</a>
+            <a href="annuaire.html">Annuaire</a>
+            <a href="inscription.html">Inscription</a>
+            <a href="apropos.html">À propos</a>
+        </nav>
+    </div>
+</header>
+
+<main>
+    <section class="login-section">
+        <div class="login-card">
+
+            <p class="eyebrow">ESPACE SÉCURISÉ</p>
+
+            <h1>Administration</h1>
+
+            <p>
+                Connectez-vous pour accéder à votre espace de gestion.
+            </p>
+
+            <form id="loginForm">
+
+                <label for="email">Adresse e-mail</label>
+                <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    placeholder="Votre adresse e-mail"
+                    autocomplete="username"
+                    required
+                >
+
+                <label for="password">Mot de passe</label>
+                <input
+                    type="password"
+                    id="password"
+                    name="password"
+                    placeholder="Votre mot de passe"
+                    autocomplete="current-password"
+                    required
+                >
+
+                <button type="submit">
+                    Se connecter →
+                </button>
+
+            </form>
+
+            <p id="loginMessage" aria-live="polite"></p>
+
+            <div class="login-note">
+                <strong>Accès réservé :</strong>
+                seuls les administrateurs autorisés peuvent accéder
+                à cet espace.
+            </div>
+
+        </div>
+    </section>
+</main>
+
+<footer class="footer">
+    <div class="container">
+        <p><strong>ANNUAIRE COMORIEN</strong></p>
+        <p>HALIDI MOHAMED MOUHADJI</p>
+        <p>Étudiant en ingénierie informatique</p>
+        <p>Créateur et développeur du projet</p>
+        <p>Depuis le 9 novembre 2026</p>
+        <p>© 2026 — Tous droits réservés.</p>
+    </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="js/login.js"></script>
+
+</body>
+</html>

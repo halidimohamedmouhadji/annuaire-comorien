@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Gestion des archives de l'Annuaire des étudiants comoriens à Ziguinchor.">
+    <meta name="theme-color" content="#10243a">
+
+    <title>Archives | Annuaire Comorien</title>
+
+    <link rel="stylesheet" href="css/style.css">
+
+    <style>
+        .archives-main {
+            max-width: 1250px;
+            margin: 40px auto;
+            padding: 20px;
+        }
+
+        .archives-container {
+            background: #ffffff;
+            border-radius: 16px;
+            padding: 30px;
+            box-shadow: 0 8px 30px rgba(16, 36, 58, 0.08);
+        }
+
+        .archives-heading {
+            color: #10243a;
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+
+        .archives-intro {
+            color: #64748b;
+            margin-bottom: 25px;
+            line-height: 1.6;
+        }
+
+        .archives-panel {
+            overflow-x: auto;
+            border-radius: 10px;
+            border: 1px solid #e2e8f0;
+        }
+
+        .archives-table {
+            width: 100%;
+            min-width: 850px;
+            border-collapse: collapse;
+            background: #ffffff;
+        }
+
+        .archives-table th {
+            background: #10243a;
+            color: #ffffff;
+            padding: 15px 12px;
+            text-align: left;
+            font-size: 13px;
+            white-space: nowrap;
+        }
+
+        .archives-table td {
+            padding: 14px 12px;
+            border-bottom: 1px solid #e8edf2;
+            color: #334155;
+            font-size: 14px;
+        }
+
+        .archives-table tbody tr:hover {
+            background: #f8fafc;
+        }
+
+        .archives-table tbody tr:last-child td {
+            border-bottom: none;
+        }
+
+        .archives-table td:last-child {
+            min-width: 260px;
+        }
+
+        .restore-button,
+        .delete-archive-button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 10px 15px;
+            margin: 4px;
+            border: none;
+            border-radius: 8px;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.25s ease;
+        }
+
+        .restore-button {
+            background: #087e78;
+            color: #ffffff;
+            box-shadow: 0 3px 8px rgba(8, 126, 120, 0.18);
+        }
+
+        .restore-button:hover {
+            background: #06645f;
+            transform: translateY(-2px);
+        }
+
+        .delete-archive-button {
+            background: linear-gradient(135deg, #a93232, #7f1d1d);
+            color: #ffffff;
+            box-shadow: 0 3px 8px rgba(127, 29, 29, 0.18);
+        }
+
+        .delete-archive-button:hover {
+            background: linear-gradient(135deg, #c03939, #922222);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 12px rgba(127, 29, 29, 0.25);
+        }
+
+        .restore-button:active,
+        .delete-archive-button:active {
+            transform: translateY(0);
+        }
+
+        .restore-button:disabled,
+        .delete-archive-button:disabled {
+            background: #999999;
+            cursor: not-allowed;
+            box-shadow: none;
+            transform: none;
+            opacity: 0.7;
+        }
+
+        .archives-message {
+            margin-top: 18px;
+            padding: 13px 16px;
+            border-radius: 8px;
+            font-size: 14px;
+            color: #475569;
+            background: #f1f5f9;
+        }
+
+        .archives-message.success {
+            color: #166534;
+            background: #dcfce7;
+        }
+
+        .archives-message.error {
+            color: #991b1b;
+            background: #fee2e2;
+        }
+
+        .archives-notice {
+            margin-bottom: 20px;
+            padding: 14px 16px;
+            background: #fff8e8;
+            border-left: 4px solid #c6a15b;
+            border-radius: 6px;
+            color: #73551c;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        .archives-footer {
+            text-align: center;
+            padding: 25px 15px;
+            color: #64748b;
+            font-size: 13px;
+        }
+
+        @media (max-width: 600px) {
+            .archives-main {
+                margin: 20px auto;
+                padding: 12px;
+            }
+
+            .archives-container {
+                padding: 18px 12px;
+            }
+
+            .archives-heading {
+                font-size: 23px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <nav>
+            <a href="index.html">Accueil</a>
+            <a href="annuaire.html">Annuaire</a>
+            <a href="admin.html">Administration</a>
+        </nav>
+    </header>
+
+    <main class="archives-main">
+        <section class="archives-container">
+
+            <h1 class="archives-heading">
+                Archives des étudiants
+            </h1>
+
+            <p class="archives-intro">
+                Consultez les dossiers des étudiants archivés.
+                Vous pouvez restaurer un étudiant dans l'annuaire
+                ou supprimer définitivement son dossier.
+            </p>
+
+            <div class="archives-notice">
+                <strong>Information :</strong>
+                La restauration remet l'étudiant dans l'annuaire.
+                La suppression définitive est irréversible.
+                Vérifiez soigneusement avant de confirmer.
+            </div>
+
+            <div class="archives-panel">
+                <table class="archives-table">
+                    <thead>
+                        <tr>
+                            <th>Nom</th>
+                            <th>Prénom</th>
+                            <th>Île d'origine</th>
+                            <th>Filière</th>
+                            <th>Date d'archivage</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="archivesTableBody">
+                        <tr>
+                            <td colspan="6">Chargement des archives...</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div
+                id="archivesMessage"
+                class="archives-message"
+                role="status"
+                aria-live="polite"
+            ></div>
+
+        </section>
+    </main>
+
+    <footer class="site-footer">
+    <div class="container">
+
+        <div class="footer-main">
+
+            <div class="footer-flags">
+                <img src="https://flagcdn.com/km.svg"
+                     class="country-flag"
+                     alt="Drapeau des Comores">
+
+                <img src="https://flagcdn.com/sn.svg"
+                     class="country-flag"
+                     alt="Drapeau du Sénégal">
+            </div>
+
+            <h2 class="footer-title">
+                ANNUAIRE DES ÉTUDIANTS COMORIENS À ZIGUINCHOR
+            </h2>
+
+            <p class="footer-description">
+                Unis par nos origines, connectés par notre avenir.
+            </p>
+
+            <div class="creator-section">
+                <span class="created-label">
+                    UN PROJET CRÉÉ ET DÉVELOPPÉ PAR
+                </span>
+
+                <h3 class="creator-name">
+                    HALIDI MOHAMED MOUHADJI
+                </h3>
+
+                <p>Étudiant en Ingénierie Informatique</p>
+                <p>Créateur et développeur du projet</p>
+                <p class="project-date">Depuis le 9 novembre 2026</p>
+            </div>
+
+        </div>
+
+        <div class="footer-bottom">
+            <p>
+                © 2026 Annuaire des Étudiants Comoriens à Ziguinchor.
+                Tous droits réservés.
+            </p>
+        </div>
+
+    </div>
+</footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="js/archives.js"></script>
+
+</body>
+</html>
